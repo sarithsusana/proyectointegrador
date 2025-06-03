@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="600" prefWidth="800" spacing="10" style="-fx-padding: 15;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GestionSancionesController">
+
+    <AnchorPane prefHeight="130" prefWidth="780">
+        <children>
+            <Label layoutX="10" layoutY="10" text="ID Sanción:" />
+            <TextField fx:id="txtIdSancion" layoutX="100" layoutY="5" prefWidth="100" />
+
+            <Label layoutX="220" layoutY="10" text="Motivo:" />
+            <TextField fx:id="txtMotivo" layoutX="270" layoutY="5" prefWidth="400" />
+
+            <Label layoutX="10" layoutY="50" text="Fecha Inicio:" />
+            <DatePicker fx:id="dateFechaInicio" layoutX="100" layoutY="45" />
+
+            <Label layoutX="287.0" layoutY="49.0" text="Fecha Fin:" />
+            <DatePicker fx:id="dateFechaFin" layoutX="349.0" layoutY="45.0" />
+
+            <Label layoutX="531.0" layoutY="50.0" text="ID Usuario:" />
+            <TextField fx:id="txtIdUsuario" layoutX="614.0" layoutY="46.0" prefWidth="150" />
+
+            <Button fx:id="btnAgregar" layoutX="100" layoutY="90" onAction="#agregarSancion" text="Agregar" />
+            <Button fx:id="btnActualizar" layoutX="180" layoutY="90" onAction="#actualizarSancion" text="Actualizar" />
+            <Button fx:id="btnEliminar" layoutX="270" layoutY="90" onAction="#eliminarSancion" text="Eliminar" />
+            <Button fx:id="btnLimpiar" layoutX="360" layoutY="90" onAction="#limpiarFormulario" text="Limpiar" />
+        </children>
+    </AnchorPane>
+
+    <TableView fx:id="tablaSanciones" prefHeight="450" prefWidth="780">
+        <columns>
+            <TableColumn fx:id="colIdSancion" prefWidth="100" text="ID Sanción" />
+            <TableColumn fx:id="colMotivo" prefWidth="250" text="Motivo" />
+            <TableColumn fx:id="colFechaInicio" prefWidth="130" text="Fecha Inicio" />
+            <TableColumn fx:id="colFechaFin" prefWidth="130" text="Fecha Fin" />
+            <TableColumn fx:id="colIdUsuario" prefWidth="100" text="ID Usuario" />
+        </columns>
+    </TableView>
+</VBox>

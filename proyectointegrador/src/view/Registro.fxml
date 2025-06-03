@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="741.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistroController">
+   <children>
+      <AnchorPane prefHeight="751.0" prefWidth="662.0">
+         <children>
+            <Label layoutX="126.0" layoutY="27.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="Registrarse en el Sistema Universitario" />
+            
+            <Label layoutX="132.0" layoutY="97.0" style="-fx-font-size: 14; -fx-text-fill: #34495e;" text="Número de identificación" />
+            <TextField fx:id="txtIdentificacion" layoutX="324.0" layoutY="91.0" prefHeight="32.0" prefWidth="205.0" promptText="Digite su identificación" style="-fx-font-size: 14; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #bdc3c7; -fx-padding: 5;" />
+            
+            <Label layoutX="264.0" layoutY="147.0" style="-fx-font-size: 14; -fx-text-fill: #34495e;" text="Nombre completo" />
+            <TextField fx:id="txtNombres" layoutX="126.0" layoutY="175.0" promptText="Nombres" style="-fx-font-size: 14; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #bdc3c7; -fx-padding: 5;" />
+            <TextField fx:id="txtApellidos" layoutX="360.0" layoutY="175.0" promptText="Apellidos" style="-fx-font-size: 14; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #bdc3c7; -fx-padding: 5;" />
+            
+            <Label layoutX="264.0" layoutY="228.0" style="-fx-font-size: 14; -fx-text-fill: #34495e;" text="Correo institucional" />
+            <TextField fx:id="txtCorreo" layoutX="206.0" layoutY="266.0" prefHeight="25.0" prefWidth="243.0" promptText="Digite su correo" style="-fx-font-size: 14; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #bdc3c7; -fx-padding: 5;" />
+            
+            <Label layoutX="281.0" layoutY="321.0" style="-fx-font-size: 14; -fx-text-fill: #34495e;" text="Rol del Usuario" />
+            <ComboBox fx:id="cbRolUsuario" layoutX="253.0" layoutY="350.0" prefWidth="150.0" promptText="Rol" />
+            
+            <Label layoutX="293.0" layoutY="399.0" style="-fx-font-size: 14; -fx-text-fill: #34495e;" text="Contraseña" />
+            <PasswordField fx:id="txtContraseña" layoutX="218.0" layoutY="428.0" prefHeight="32.0" prefWidth="220.0" promptText="Digite su contraseña" style="-fx-font-size: 14; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #bdc3c7; -fx-padding: 5;" />
+            
+            <PasswordField fx:id="txtConfirmarContraseña" layoutX="218.0" layoutY="477.0" prefHeight="32.0" prefWidth="220.0" promptText="Confirme su contraseña" style="-fx-font-size: 14; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #bdc3c7; -fx-padding: 5;" />
+            
+            <CheckBox fx:id="chkTerminos" layoutX="191.0" layoutY="540.0" style="-fx-font-size: 14; -fx-text-fill: #34495e;" text="Acepto los términos y condiciones del sistema" />
+            
+            <Button fx:id="btnRegistrar" layoutX="230.0" layoutY="585.0" prefHeight="30.0" prefWidth="194.0" style="-fx-font-size: 14; -fx-background-color: #2ecc71; -fx-text-fill: white; -fx-background-radius: 5;" text="Registrar" onAction="#registrarUsuario"/>
+            
+            <Button fx:id="btnVolverLogin" layoutX="231.0" layoutY="635.0" prefHeight="30.0" prefWidth="194.0" style="-fx-font-size: 14; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 5;" text="Volver al login" onAction="#regresarALogin"/>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

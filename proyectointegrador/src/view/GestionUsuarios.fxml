@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.GestionUsuariosController" spacing="10" alignment="TOP_CENTER" prefWidth="650" prefHeight="600" style="-fx-padding: 15;">
+
+    <TableView fx:id="tablaUsuarios" prefHeight="300" prefWidth="630">
+        <columns>
+            <TableColumn fx:id="colIdentificacion" text="Identificación" prefWidth="100"/>
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="120"/>
+            <TableColumn fx:id="colApellido" text="Apellido" prefWidth="120"/>
+            <TableColumn fx:id="colCorreo" text="Correo" prefWidth="150"/>
+            <TableColumn fx:id="colTipoUsuario" text="Tipo Usuario" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <GridPane hgap="10" vgap="10" maxWidth="630">
+        <columnConstraints>
+            <ColumnConstraints minWidth="100" halignment="RIGHT"/>
+            <ColumnConstraints minWidth="200"/>
+        </columnConstraints>
+
+        <Label text="Identificación:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtIdentificacion" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtNombre" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Apellido:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtApellido" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Correo:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCorreo" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Tipo Usuario:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="comboTipoUsuario" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT" maxWidth="630">
+        <Button text="Agregar" onAction="#agregarUsuario" prefWidth="90"/>
+        <Button text="Actualizar" onAction="#actualizarUsuario" prefWidth="90"/>
+        <Button text="Eliminar" onAction="#eliminarUsuario" prefWidth="90"/>
+        <Button text="Limpiar" onAction="#limpiarFormulario" prefWidth="90"/>
+    </HBox>
+
+</VBox>
+
+

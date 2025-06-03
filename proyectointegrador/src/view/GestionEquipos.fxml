@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="controller.GestionEquiposController" 
+      spacing="10" prefWidth="700" prefHeight="600" style="-fx-padding: 15;">
+
+    <AnchorPane prefHeight="60" prefWidth="700">
+        <children>
+            <TextField fx:id="txtBuscarEquipo" layoutX="20" layoutY="15" prefWidth="500" promptText="Buscar por tipo o marca"/>
+            <Button fx:id="btnBuscar" layoutX="540" layoutY="15" text="Buscar" onAction="#buscarEquipo"/>
+            <Button fx:id="btnAgregar" layoutX="620" layoutY="15" text="Agregar Equipo" onAction="#agregarEquipo"/>
+        </children>
+    </AnchorPane>
+
+    <TableView fx:id="tablaEquipos" prefWidth="680" prefHeight="500">
+        <columns>
+            <TableColumn fx:id="colIdEquipo" text="ID Equipo" prefWidth="100"/>
+            <TableColumn fx:id="colTipo" text="Tipo" prefWidth="200"/>
+            <TableColumn fx:id="colMarca" text="Marca" prefWidth="200"/>
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="180"/>
+        </columns>
+    </TableView>
+
+</VBox>

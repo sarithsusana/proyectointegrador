@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.GestionCalendarioController"
+            prefWidth="800" prefHeight="600">
+
+    <TableView fx:id="tablaCalendario" prefWidth="780" prefHeight="580" layoutX="10" layoutY="10">
+        <columns>
+            <TableColumn fx:id="colHorario" text="Horario" prefWidth="120" />
+            <TableColumn fx:id="colSala1" text="Sala 1" prefWidth="220" />
+            <TableColumn fx:id="colSala2" text="Sala 2" prefWidth="220" />
+            <TableColumn fx:id="colSala3" text="Sala 3" prefWidth="220" />
+        </columns>
+    </TableView>
+
+</AnchorPane>

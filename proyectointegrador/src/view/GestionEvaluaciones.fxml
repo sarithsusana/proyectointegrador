@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.GestionEvaluacionesController"
+      spacing="10" prefWidth="800" prefHeight="600" style="-fx-padding: 15;">
+
+    <AnchorPane prefHeight="130" prefWidth="780">
+        <children>
+            <Label layoutX="10" layoutY="10" text="ID Evaluación:"/>
+            <TextField fx:id="txtIdEvaluacion" layoutX="110" layoutY="5" prefWidth="100"/>
+
+            <Label layoutX="230" layoutY="10" text="Descripción:"/>
+            <TextField fx:id="txtDescripcion" layoutX="310" layoutY="5" prefWidth="400"/>
+
+            <Label layoutX="10" layoutY="50" text="Calificación:"/>
+            <TextField fx:id="txtCalificacion" layoutX="110" layoutY="45" prefWidth="100"/>
+
+            <Label layoutX="230" layoutY="50" text="ID Usuario:"/>
+            <TextField fx:id="txtIdUsuario" layoutX="310" layoutY="45" prefWidth="200"/>
+
+            <Button fx:id="btnAgregar" layoutX="110" layoutY="90" text="Agregar" onAction="#agregarEvaluacion"/>
+            <Button fx:id="btnActualizar" layoutX="190" layoutY="90" text="Actualizar" onAction="#actualizarEvaluacion"/>
+            <Button fx:id="btnEliminar" layoutX="290" layoutY="90" text="Eliminar" onAction="#eliminarEvaluacion"/>
+            <Button fx:id="btnLimpiar" layoutX="390" layoutY="90" text="Limpiar" onAction="#limpiarFormulario"/>
+        </children>
+    </AnchorPane>
+
+    <TableView fx:id="tablaEvaluaciones" prefHeight="450" prefWidth="780">
+        <columns>
+            <TableColumn fx:id="colIdEvaluacion" text="ID Evaluación" prefWidth="100"/>
+            <TableColumn fx:id="colDescripcion" text="Descripción" prefWidth="350"/>
+            <TableColumn fx:id="colCalificacion" text="Calificación" prefWidth="100"/>
+            <TableColumn fx:id="colIdUsuario" text="ID Usuario" prefWidth="200"/>
+        </columns>
+    </TableView>
+</VBox>

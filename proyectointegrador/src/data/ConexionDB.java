@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class ConexionDB {
 
     private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-    private static final String USER = "system"; // Cambia a tu usuario
-    private static final String PASSWORD = "system"; // Cambia a tu contraseña
+    private static final String USER = "prueba"; // Cambia a tu usuario
+    private static final String PASSWORD = "prueba"; // Cambia a tu contraseña
 
     public static Connection conectar() {
         Connection connection = null;

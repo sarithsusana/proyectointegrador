@@ -14,6 +14,7 @@ public class EquipoDAO {
         this.connection = ConexionDB.conectar();
     }
 
+    // Obtener todos los equipos
     public List<Equipo> obtenerTodos() throws SQLException {
         List<Equipo> lista = new ArrayList<>();
         String sql = "SELECT id_equipo, tipo, marca, estado FROM EQUIPO_AUDIOVISUAL";
@@ -34,6 +35,7 @@ public class EquipoDAO {
         return lista;
     }
 
+    // Insertar un equipo
     public boolean insertar(Equipo equipo) throws SQLException {
         String sql = "INSERT INTO EQUIPO_AUDIOVISUAL (id_equipo, tipo, marca, estado) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -46,6 +48,7 @@ public class EquipoDAO {
         }
     }
 
+    // Actualizar un equipo
     public boolean actualizar(Equipo equipo) throws SQLException {
         String sql = "UPDATE EQUIPO_AUDIOVISUAL SET tipo = ?, marca = ?, estado = ? WHERE id_equipo = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -58,6 +61,7 @@ public class EquipoDAO {
         }
     }
 
+    // Eliminar un equipo
     public boolean eliminar(int idEquipo) throws SQLException {
         String sql = "DELETE FROM EQUIPO_AUDIOVISUAL WHERE id_equipo = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {

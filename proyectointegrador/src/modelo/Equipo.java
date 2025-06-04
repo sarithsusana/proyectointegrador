@@ -32,4 +32,3 @@ public class Equipo {
     public void setEstado(String estado) { this.estado.set(estado); }
     public StringProperty estadoProperty() { return estado; }
 }
-

@@ -84,17 +84,16 @@ public class RegistroController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error al cargar Login.fxml: " + e.getMessage());
+            mostrarAlerta("Error", "Error al cargar Login.fxml: " + e.getMessage());
         }
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION); // Cambiar tipo de alerta si es error
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
 }
-
 

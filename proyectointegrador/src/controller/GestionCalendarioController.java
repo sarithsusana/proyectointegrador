@@ -71,7 +71,7 @@ public class GestionCalendarioController {
     private boolean estaOcupado(List<Prestamo> prestamos, int idSala, LocalTime inicio, LocalTime fin) {
         for (Prestamo p : prestamos) {
             if (p.getIdSala() == idSala) {
-                // Comparar solo la hora de LocalDateTime
+               
                 LocalTime inicioPrestamo = p.getFechaHoraInicio().toLocalTime();
                 LocalTime finPrestamo = p.getFechaHoraFin().toLocalTime();
 

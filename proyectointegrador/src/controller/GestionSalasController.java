@@ -95,7 +95,7 @@ public class GestionSalasController {
 
     @FXML
     private void agregarSala() {
-        // Implementa o reutiliza tu código para agregar sala aquí
+        
     }
 
     private LocalTime parseHora(String textoHora) throws DateTimeParseException {

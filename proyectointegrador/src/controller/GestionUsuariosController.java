@@ -67,7 +67,7 @@ public class GestionUsuariosController {
         txtCorreo.setText(usuario.getCorreo());
         comboTipoUsuario.setValue(usuario.getTipoUsuario());
         txtContrasena.setText(usuario.getContrasena());
-        txtIdentificacion.setDisable(true);  // No permitimos cambiar PK al editar
+        txtIdentificacion.setDisable(true);  
     }
 
     @FXML

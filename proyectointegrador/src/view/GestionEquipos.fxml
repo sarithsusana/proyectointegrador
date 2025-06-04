@@ -1,32 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/21" 
-      xmlns:fx="http://javafx.com/fxml/1" 
-      fx:controller="controller.GestionEquiposController" 
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.GestionEquiposController"
       spacing="10" prefWidth="700" prefHeight="600" style="-fx-padding: 15;">
 
-    <AnchorPane prefHeight="60" prefWidth="700">
+    <AnchorPane prefHeight="140" prefWidth="700">
         <children>
-            <TextField fx:id="txtBuscarEquipo" layoutX="20" layoutY="15" prefWidth="500" promptText="Buscar por tipo o marca"/>
-            <Button fx:id="btnBuscar" layoutX="540" layoutY="15" text="Buscar" onAction="#buscarEquipo"/>
-            <Button fx:id="btnAgregar" layoutX="620" layoutY="15" text="Agregar Equipo" onAction="#agregarEquipo"/>
+            <TextField fx:id="txtBuscarEquipo" layoutX="20" layoutY="20" prefWidth="400" promptText="Buscar por tipo o ID de equipo" />
+            <Button fx:id="btnBuscar" layoutX="430" layoutY="20" onAction="#buscarEquipo" text="Buscar" />
+            <Button fx:id="btnAgregar" layoutX="510" layoutY="20" onAction="#agregarEquipo" text="Agregar Equipo" />
+
+            <Label layoutX="6.0" layoutY="69.0" text="Fecha Préstamo:" />
+            <DatePicker fx:id="datePickerFecha" layoutX="100.0" layoutY="65.0" prefWidth="120" />
+
+            <Label layoutX="227.0" layoutY="69.0" text="Hora Inicio (HH:mm):" />
+            <TextField fx:id="txtHoraInicio" layoutX="341.0" layoutY="65.0" prefHeight="25.0" prefWidth="78.0" />
+
+            <Label layoutX="420.0" layoutY="69.0" text="Hora Fin (HH:mm):" />
+            <TextField fx:id="txtHoraFin" layoutX="530" layoutY="65" prefWidth="70" />
+
+            <Button fx:id="btnPrestar" layoutX="620" layoutY="60" onAction="#prestarEquipo" text="Prestar Equipo" />
         </children>
     </AnchorPane>
 
-    <TableView fx:id="tablaEquipos" prefWidth="680" prefHeight="500">
+    <TableView fx:id="tablaEquipos" prefHeight="450" prefWidth="680">
         <columns>
-            <TableColumn fx:id="colIdEquipo" text="ID Equipo" prefWidth="100"/>
-            <TableColumn fx:id="colTipo" text="Tipo" prefWidth="200"/>
-            <TableColumn fx:id="colMarca" text="Marca" prefWidth="200"/>
-            <TableColumn fx:id="colEstado" text="Estado" prefWidth="180"/>
+            <TableColumn fx:id="colIdEquipo" prefWidth="100" text="ID Equipo" />
+            <TableColumn fx:id="colTipo" prefWidth="200" text="Tipo" />
+            <TableColumn fx:id="colMarca" prefWidth="200" text="Marca" />
+            <TableColumn fx:id="colEstado" prefWidth="230" text="Estado" />
         </columns>
     </TableView>
-
 </VBox>

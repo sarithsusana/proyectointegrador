@@ -1,15 +1,18 @@
 package controller;
 
 import data.EquipoDAO;
+import data.PrestamoDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import modelo.Equipo;
+import modelo.Prestamo;
+import modelo.Usuario;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 public class GestionEquiposController {
 
@@ -23,11 +26,28 @@ public class GestionEquiposController {
     @FXML private TableColumn<Equipo, String> colEstado;
 
     private EquipoDAO equipoDAO;
+    private PrestamoDAO prestamoDAO;
+
     private ObservableList<Equipo> listaEquipos;
+
+    private String identificacionUsuarioActual;
+    private String idAdministradorActual;
+
+    // Este método se utiliza para asignar el usuario o administrador logueado
+    public void setUsuario(Usuario usuario) {
+        if (usuario != null) {
+            if (usuario.getTipoUsuario().equals("Administrador")) {
+                idAdministradorActual = usuario.getIdentificacion();
+            } else {
+                identificacionUsuarioActual = usuario.getIdentificacion();
+            }
+        }
+    }
 
     @FXML
     public void initialize() {
         equipoDAO = new EquipoDAO();
+        prestamoDAO = new PrestamoDAO();
 
         colIdEquipo.setCellValueFactory(cell -> cell.getValue().idEquipoProperty());
         colTipo.setCellValueFactory(cell -> cell.getValue().tipoProperty());
@@ -35,12 +55,9 @@ public class GestionEquiposController {
         colEstado.setCellValueFactory(cell -> cell.getValue().estadoProperty());
 
         cargarEquipos();
-
-        tablaEquipos.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
-            // Aquí podrías llenar un formulario para editar o mostrar detalles si tienes uno
-        });
     }
 
+    // Cargar los equipos desde la base de datos
     private void cargarEquipos() {
         try {
             List<Equipo> equipos = equipoDAO.obtenerTodos();
@@ -51,6 +68,7 @@ public class GestionEquiposController {
         }
     }
 
+    // Buscar un equipo específico en la tabla
     @FXML
     private void buscarEquipo() {
         String criterio = txtBuscarEquipo.getText().trim();
@@ -71,60 +89,13 @@ public class GestionEquiposController {
         tablaEquipos.setItems(resultado);
     }
 
+    // Método para agregar un nuevo equipo (esto puede ser modificado para ajustarse a tu lógica de agregar equipo)
     @FXML
     private void agregarEquipo() {
-        TextInputDialog dialogId = new TextInputDialog();
-        dialogId.setHeaderText("Ingrese ID del equipo (numérico)");
-        Optional<String> idResult = dialogId.showAndWait();
-        if (idResult.isEmpty()) return;
-
-        int idEquipo;
-        try {
-            idEquipo = Integer.parseInt(idResult.get());
-        } catch (NumberFormatException e) {
-            mostrarAlerta("Error", "ID debe ser un número entero");
-            return;
-        }
-
-        TextInputDialog dialogTipo = new TextInputDialog();
-        dialogTipo.setHeaderText("Ingrese tipo de equipo");
-        Optional<String> tipoResult = dialogTipo.showAndWait();
-        if (tipoResult.isEmpty() || tipoResult.get().isBlank()) {
-            mostrarAlerta("Error", "Tipo no puede estar vacío");
-            return;
-        }
-
-        TextInputDialog dialogMarca = new TextInputDialog();
-        dialogMarca.setHeaderText("Ingrese marca del equipo");
-        Optional<String> marcaResult = dialogMarca.showAndWait();
-        if (marcaResult.isEmpty() || marcaResult.get().isBlank()) {
-            mostrarAlerta("Error", "Marca no puede estar vacía");
-            return;
-        }
-
-        TextInputDialog dialogEstado = new TextInputDialog();
-        dialogEstado.setHeaderText("Ingrese estado del equipo");
-        Optional<String> estadoResult = dialogEstado.showAndWait();
-        if (estadoResult.isEmpty() || estadoResult.get().isBlank()) {
-            mostrarAlerta("Error", "Estado no puede estar vacío");
-            return;
-        }
-
-        Equipo nuevoEquipo = new Equipo(idEquipo, tipoResult.get(), marcaResult.get(), estadoResult.get());
-
-        try {
-            boolean exito = equipoDAO.insertar(nuevoEquipo);
-            if (exito) {
-                mostrarAlerta("Éxito", "Equipo agregado correctamente");
-                cargarEquipos();
-            } else {
-                mostrarAlerta("Error", "No se pudo agregar el equipo");
-            }
-        } catch (SQLException e) {
-            mostrarAlerta("Error", "Error al agregar equipo: " + e.getMessage());
-        }
+        // Aquí implementamos lo que necesites para agregar un nuevo equipo
     }
 
+    // Mostrar una alerta con mensaje personalizado
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
@@ -132,5 +103,43 @@ public class GestionEquiposController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-}
 
+    // Método para prestar un equipo
+    @FXML
+    private void prestarEquipo() {
+        // Verificamos si hay un usuario logueado
+        if (identificacionUsuarioActual == null && idAdministradorActual == null) {
+            mostrarAlerta("Error", "Debe estar logueado para realizar un préstamo.");
+            return;
+        }
+
+        // Seleccionamos el equipo que se va a prestar
+        Equipo equipoSeleccionado = tablaEquipos.getSelectionModel().getSelectedItem();
+        if (equipoSeleccionado == null) {
+            mostrarAlerta("Advertencia", "Debe seleccionar un equipo para prestar.");
+            return;
+        }
+
+        // Fecha y hora de inicio y fin del préstamo
+        LocalDateTime fechaHoraInicio = LocalDateTime.now(); // Asumimos que se empieza ahora, ajusta según lo necesario
+        LocalDateTime fechaHoraFin = fechaHoraInicio.plusHours(1); // Ejemplo, el préstamo dura 1 hora, ajusta según lo necesario
+
+        // Si el equipo está disponible, procesamos el préstamo
+        Prestamo nuevoPrestamo = new Prestamo(
+                0, fechaHoraInicio, fechaHoraFin, "Activo",
+                identificacionUsuarioActual != null ? identificacionUsuarioActual : null,
+                0, equipoSeleccionado.getIdEquipo(), idAdministradorActual
+        );
+
+        try {
+            boolean exito = prestamoDAO.insertar(nuevoPrestamo);
+            if (exito) {
+                mostrarAlerta("Éxito", "Equipo prestado correctamente.");
+            } else {
+                mostrarAlerta("Error", "No se pudo registrar el préstamo.");
+            }
+        } catch (SQLException e) {
+            mostrarAlerta("Error", "Error al guardar préstamo: " + e.getMessage());
+        }
+    }
+}

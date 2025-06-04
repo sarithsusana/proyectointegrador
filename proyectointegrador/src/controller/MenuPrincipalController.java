@@ -1,12 +1,12 @@
 package controller;
 
+import modelo.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import modelo.Usuario;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -17,10 +17,12 @@ public class MenuPrincipalController {
     @FXML private Button btnGestionSalas;
     @FXML private Button btnGestionEquipos;
     @FXML private Button btnGestionPrestamos;
-    @FXML private Button btnGestionUsuarios;
+    @FXML private Button btnGestionUsuarios; // Este es el botón de "Gestionar Usuarios"
+    @FXML private Button btnRegistrarUsuarios; // Este es el botón de "Registrar Usuarios"
     @FXML private Button btnGestionSanciones;
     @FXML private Button btnGestionEvaluaciones;
     @FXML private Button btnGestionMantenimiento;
+    @FXML private Button btnVerSanciones;  // Asegúrate de que este también esté bien
 
     // Recibe el usuario desde LoginController
     public void setUsuario(Usuario usuario) {
@@ -28,92 +30,92 @@ public class MenuPrincipalController {
         configurarPermisos();
     }
 
+    // Configura los permisos según el tipo de usuario
     private void configurarPermisos() {
         String rol = usuario.getTipoUsuario();
+        
         if (rol == null) rol = "";
 
-        System.out.println("Rol usuario detectado: " + rol);
-
         if (rol.equalsIgnoreCase("Administrador")) {
+            // Si es administrador, mostrar todos los botones
             btnGestionSalas.setVisible(true);
             btnGestionEquipos.setVisible(true);
             btnGestionPrestamos.setVisible(true);
-            btnGestionUsuarios.setVisible(true);
+            btnRegistrarUsuarios.setVisible(true);  // Mostrar "Registrar Usuarios" solo para administrador
+            btnGestionUsuarios.setVisible(true); // Mostrar "Gestionar Usuarios" solo para administrador
             btnGestionSanciones.setVisible(true);
             btnGestionEvaluaciones.setVisible(true);
             btnGestionMantenimiento.setVisible(true);
+            btnVerSanciones.setVisible(false); // Ocultar para administradores
         } else {
+            // Si no es administrador, solo mostrar ciertos botones
             btnGestionSalas.setVisible(true);
             btnGestionPrestamos.setVisible(true);
-
-            btnGestionEquipos.setVisible(false);
-            btnGestionUsuarios.setVisible(false);
+            btnRegistrarUsuarios.setVisible(false); // Ocultar "Registrar Usuarios" para usuarios
+            btnGestionUsuarios.setVisible(false); // Ocultar "Gestionar Usuarios" para usuarios
             btnGestionSanciones.setVisible(false);
             btnGestionEvaluaciones.setVisible(false);
             btnGestionMantenimiento.setVisible(false);
+            btnVerSanciones.setVisible(true); // Mostrar "Ver Sanciones" solo para usuarios
         }
     }
 
     @FXML
     private void abrirGestionSalas() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/GestionSalas.fxml"));
-            Parent root = loader.load();
-
-            // Obtener controlador para pasar el usuario
-            controller.GestionSalasController gestionController = loader.getController();
-
-            if (usuario.getTipoUsuario().equalsIgnoreCase("Administrador")) {
-                gestionController.setIdAdministradorActual(usuario.getIdentificacion());
-            } else {
-                gestionController.setIdentificacionUsuarioActual(usuario.getIdentificacion());
-            }
-
-            Stage stage = new Stage();
-            stage.setTitle("Gestión de Salas");
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error al abrir Gestión de Salas: " + e.getMessage());
-        }
+        abrirVentana("GestionSalas.fxml");
     }
 
     @FXML
     private void abrirGestionEquipos() {
-        abrirVentana("view/GestionEquipos.fxml");
+        abrirVentana("GestionEquipos.fxml");
     }
 
     @FXML
     private void abrirGestionPrestamos() {
-        abrirVentana("view/GestionDePrestamos.fxml");
+        abrirVentana("GestionDePrestamos.fxml");
     }
 
     @FXML
     private void abrirGestionUsuarios() {
-        abrirVentana("view/GestionUsuarios.fxml");
+        abrirVentana("GestionUsuarios.fxml"); // Esta es la ventana de "Gestionar Usuarios"
     }
 
     @FXML
     private void abrirGestionSanciones() {
-        abrirVentana("view/GestionSanciones.fxml");
+        abrirVentana("GestionSanciones.fxml");
     }
 
     @FXML
     private void abrirGestionEvaluaciones() {
-        abrirVentana("view/GestionEvaluaciones.fxml");
+        abrirVentana("GestionEvaluaciones.fxml");
     }
 
     @FXML
     private void abrirGestionMantenimiento() {
-        abrirVentana("view/GestionMantenimiento.fxml");
+        abrirVentana("GestionMantenimiento.fxml");
     }
 
+    @FXML
+    private void abrirRegistrarUsuarios() {
+        abrirVentana("Registro.fxml"); // Esta es la ventana de "Registrar Usuarios"
+    }
+
+    @FXML
+    private void abrirVerSanciones() {
+        abrirVentana("GestionSanciones.fxml");
+    }
+
+    // Método genérico para abrir las ventanas
     private void abrirVentana(String fxml) {
         try {
-            String resourcePath = fxml.startsWith("/") ? fxml : "/" + fxml;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(resourcePath));
+            // Verifica si la ruta es correcta
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/" + fxml));  // Ruta correcta
+
+            // Si la ubicación del FXML no es válida, lanza un error
+            if (loader.getLocation() == null) {
+                throw new IOException("No se pudo encontrar el archivo FXML: " + fxml);
+            }
+
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Sistema Universitario");
@@ -125,3 +127,6 @@ public class MenuPrincipalController {
         }
     }
 }
+
+
+

@@ -60,7 +60,7 @@ public class GestionPrestamosController {
         colUsuario.setCellValueFactory(cell -> cell.getValue().identificacionUsuarioProperty());
         colSala.setCellValueFactory(cell -> cell.getValue().idSalaProperty());
 
-        // Manejo null para idEquipo en la tabla:
+        
         colEquipo.setCellValueFactory(cell -> {
             Integer equipo = cell.getValue().getIdEquipo();
             if (equipo == null) {

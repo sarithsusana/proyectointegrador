@@ -26,8 +26,6 @@
             <Label fx:id="lblError" layoutX="120.0" layoutY="380.0" style="-fx-text-fill: red; -fx-font-size: 14;" text="" visible="false" />
 
             <Button fx:id="btnIngresar" layoutX="83.0" layoutY="427.0" prefHeight="30.0" prefWidth="300.0" style="-fx-font-size: 14; -fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" text="Ingresar" onAction="#validarLogin" />
-            
-            <Button fx:id="btnRegistrar" layoutX="83.0" layoutY="474.0" prefHeight="30.0" prefWidth="300.0" style="-fx-font-size: 14; -fx-background-color: #2ecc71; -fx-text-fill: white; -fx-background-radius: 5;" text="Registrarse" onAction="#irARegistro" />
          </children>
       </AnchorPane>
    </children>

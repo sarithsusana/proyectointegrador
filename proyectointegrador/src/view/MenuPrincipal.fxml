@@ -1,36 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuPrincipalController" alignment="TOP_CENTER" spacing="20" prefHeight="600" prefWidth="400" style="-fx-background-color: #ecf0f1; -fx-padding: 30;">
-    <!-- Título del menú -->
-    <Text text="Bienvenido al Sistema" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
-
-    <!-- Botón de Gestión de Salas -->
-    <Button fx:id="btnGestionSalas" text="Gestionar Salas" onAction="#abrirGestionSalas" prefWidth="300" style="-fx-font-size: 16px; -fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" />
-    
-    <!-- Botón de Gestión de Equipos -->
-    <Button fx:id="btnGestionEquipos" text="Gestionar Equipos" onAction="#abrirGestionEquipos" prefWidth="300" style="-fx-font-size: 16px; -fx-background-color: #2980b9; -fx-text-fill: white; -fx-background-radius: 5;" />
-    
-    <!-- Botón de Gestión de Préstamos -->
-    <Button fx:id="btnGestionPrestamos" text="Gestionar Préstamos" onAction="#abrirGestionPrestamos" prefWidth="300" style="-fx-font-size: 16px; -fx-background-color: #1abc9c; -fx-text-fill: white; -fx-background-radius: 5;" />
-    
-    <!-- Botón de Gestionar Usuarios -->
-    <Button fx:id="btnGestionUsuarios" text="Gestionar Usuarios" onAction="#abrirGestionUsuarios" prefWidth="300" style="-fx-font-size: 16px; -fx-background-color: #f39c12; -fx-text-fill: white; -fx-background-radius: 5;" visible="false" />
-    
-    <!-- Botón de Registrar Usuarios -->
-    <Button fx:id="btnRegistrarUsuarios" text="Registrar Usuarios" onAction="#abrirRegistrarUsuarios" prefWidth="300" style="-fx-font-size: 16px; -fx-background-color: #e67e22; -fx-text-fill: white; -fx-background-radius: 5;" visible="false" />
-
-    <!-- Botón de Gestión de Sanciones -->
-    <Button fx:id="btnGestionSanciones" text="Gestionar Sanciones" onAction="#abrirGestionSanciones" prefWidth="300" style="-fx-font-size: 16px; -fx-background-color: #c0392b; -fx-text-fill: white; -fx-background-radius: 5;" />
-    
-    <!-- Botón de Gestión de Evaluaciones -->
-    <Button fx:id="btnGestionEvaluaciones" text="Gestionar Evaluaciones" onAction="#abrirGestionEvaluaciones" prefWidth="300" style="-fx-font-size: 16px; -fx-background-color: #8e44ad; -fx-text-fill: white; -fx-background-radius: 5;" />
-    
-    <!-- Botón de Gestión de Mantenimiento -->
-    <Button fx:id="btnGestionMantenimiento" text="Gestionar Mantenimiento" onAction="#abrirGestionMantenimiento" prefWidth="300" style="-fx-font-size: 16px; -fx-background-color: #d35400; -fx-text-fill: white; -fx-background-radius: 5;" />
-    
-    <!-- Botón de Ver Sanciones -->
-    <Button fx:id="btnVerSanciones" text="Ver Sanciones" onAction="#abrirVerSanciones" prefWidth="300" style="-fx-font-size: 16px; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 5;" />
+<VBox alignment="TOP_CENTER" spacing="20" prefHeight="600" prefWidth="400" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuPrincipalController" style="-fx-background-color: #ecf0f1; -fx-padding: 30;">
+    <children>
+        <Label text="Menú Principal" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+        <Button fx:id="btnGestionSalas" text="Gestión de Salas" prefWidth="300" prefHeight="40" style="-fx-font-size: 16px; -fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" onAction="#abrirGestionSalas"/>
+        <Button fx:id="btnGestionEquipos" text="Gestión de Equipos Audiovisuales" prefWidth="300" prefHeight="40" style="-fx-font-size: 16px; -fx-background-color: #2980b9; -fx-text-fill: white; -fx-background-radius: 5;" onAction="#abrirGestionEquipos"/>
+        <Button fx:id="btnGestionPrestamos" text="Gestión de Préstamos" prefWidth="300" prefHeight="40" style="-fx-font-size: 16px; -fx-background-color: #1abc9c; -fx-text-fill: white; -fx-background-radius: 5;" onAction="#abrirGestionPrestamos"/>
+        <Button fx:id="btnGestionUsuarios" text="Gestión de Usuarios" prefWidth="300" prefHeight="40" style="-fx-font-size: 16px; -fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 5;" onAction="#abrirGestionUsuarios"/>
+        <Button fx:id="btnGestionSanciones" text="Gestión de Sanciones" prefWidth="300" prefHeight="40" style="-fx-font-size: 16px; -fx-background-color: #c0392b; -fx-text-fill: white; -fx-background-radius: 5;" onAction="#abrirGestionSanciones"/>
+        <Button fx:id="btnGestionEvaluaciones" text="Gestión de Evaluaciones" prefWidth="300" prefHeight="40" style="-fx-font-size: 16px; -fx-background-color: #8e44ad; -fx-text-fill: white; -fx-background-radius: 5;" onAction="#abrirGestionEvaluaciones"/>
+        <Button fx:id="btnGestionMantenimiento" text="Gestión de Mantenimiento" prefWidth="300" prefHeight="40" style="-fx-font-size: 16px; -fx-background-color: #d35400; -fx-text-fill: white; -fx-background-radius: 5;" onAction="#abrirGestionMantenimiento"/>
+    </children>
 </VBox>

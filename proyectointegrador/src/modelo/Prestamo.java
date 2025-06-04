@@ -61,4 +61,3 @@ public class Prestamo {
     public StringProperty idAdministradorProperty() { return idAdministrador; }
 }
 
-
